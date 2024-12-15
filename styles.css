@@ -10,6 +10,8 @@ html {
     --body-background: rgb(228, 228, 228);
     --body-background-lighter: rgb(245, 244, 244);
     --header-background: rgb(251, 251, 251);
+    --board-line-color: lightgrey;
+    --shadow: rgba(193, 193, 193, 0.722);
 }
 
 body {
@@ -20,8 +22,9 @@ body {
     display: grid;
     grid-template: 1fr 6fr / 1fr;
     height: 100vh;
-    width: clamp(15rem, 40%, 60rem);
+    width: clamp(35rem, 40%, 120rem);
     justify-self: center;
+    box-shadow: 3px 0px 10px var(--shadow), -3px 0px 10px var(--shadow);
 }
 
 header {
@@ -29,6 +32,8 @@ header {
     justify-content: space-around;
     display: grid;
     grid-template: 1.2fr 1fr / 1fr 1fr;
+    box-shadow: 0px 3px 10px var(--shadow);
+    z-index: 3;
 
     >* {
         padding: 0 0 0 2rem;
@@ -78,11 +83,46 @@ main {
     grid-template: 1fr 9fr / 1fr;
     height: 100%;
     margin: 2rem;
+    justify-items: center;
 }
 
 #game-container-inner {
-    width: 100%;
+    width: clamp(40%, 30rem, 75%);
+    height: clamp(40%, 30rem, 75%);
     padding: 1rem;
     border: 2px solid var(--body-background);
     border-radius: 8px;
+    box-shadow: 3px 3px 3px var(--body-background-lighter), -3px -3px 3px var(--body-background-lighter);
+    
+
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
 }
+
+#game-container-inner > *:nth-child(1n + 4) {
+    border-top: 1px solid var(--board-line-color);
+}
+
+#one, #two, #four, #five, #seven, #eight {
+    border-right: 1px solid var(--board-line-color);
+}
+
+#game-container-inner > *:hover {
+    cursor: pointer;
+    /* box-shadow: inset 3px 3px 5px var(--shadow), inset -3px -3px 5px var(--shadow); */
+}
+
+
+/*
+#one:hover {
+    box-shadow: inset -3px -3px 5px var(--shadow), inset 3px 3px 5px white;
+}
+
+#two:hover {
+    box-shadow: inset 3px 0px 5px var(--shadow), inset -3px -3px 5px var(--shadow), inset 0px 3px 5px white;
+}
+
+#three:hover {
+    box-shadow: inset -0px -3px 5px var(--shadow), inset 3px 0px 5px var(--shadow), inset 3px 3px 5px white;
+}
+*/
